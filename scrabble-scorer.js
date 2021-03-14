@@ -105,17 +105,17 @@ const scoringAlgorithms = [
   new Object({ 
     name: 'Simple Score', 
     description: 'Each letter is worth 1 point.', 
-    scorerFunction: function(word){ return simpleScore(word) } }),
+    scoringFunction: function(word){ return simpleScore(word) } }),
   
   new Object({ 
     name: 'Bonus Vowels', 
     description: 'Vowels are 3 pts, consonants are 1 pt.', 
-    scorerFunction: function(word){ return vowelBonusScore(word)} }),
+    scoringFunction: function(word){ return vowelBonusScore(word)} }),
   
   new Object({ 
     name: 'Scrabble', 
     description: 'The traditional scoring algorithm', 
-    scorerFunction: function(word){ return scrabbleScore(word)} })
+    scoringFunction: function(word){ return scrabbleScore(word)} })
 ];
 
 function scorerPrompt( word ) {
@@ -125,7 +125,7 @@ function scorerPrompt( word ) {
   console.log(`1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}`)
   console.log(`2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}`)
   let algoSelection = input.question("Enter 0, 1, or 2: ")
-  console.log(`Score for '${word}': ${scoringAlgorithms[algoSelection].scorerFunction(word)}`)
+  console.log(`Score for '${word}': ${scoringAlgorithms[algoSelection].scoringFunction(word)}`)
 }
 
 function transform( oldPointStructure ){
