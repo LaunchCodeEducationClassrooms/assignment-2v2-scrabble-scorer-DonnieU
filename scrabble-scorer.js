@@ -65,6 +65,7 @@ let scrabbleScore = function( word ){
   return sum;  
 }
 
+/*
 let simpleScoreObject = {
   'name': "Simple Score",
   'description': "Each letter is worth 1 point.",
@@ -83,7 +84,7 @@ let newScrabbleScorerObject = {
   'description': "The traditional scoring algorithm",
   'scorerFunction': function(word){ return scrabbleScore(word) }
 };
-
+*/
 /*
 const scoringAlgorithms = [
   simpleScoreObject,
@@ -92,18 +93,37 @@ const scoringAlgorithms = [
 ];
 */
 
+/*
 const scoringAlgorithms = [
   simpleScoreObject,
   vowelBonusScoreObject,
   newScrabbleScorerObject
 ];
+*/
+
+const scoringAlgorithms = [ 
+  Object({ 
+    name: 'Simple Score', 
+    description: 'Each letter is worth 1 point.', 
+    scorerFunction: function(word){ return simpleScore(word) } }),
+  
+  Object({ 
+    name: 'Bonus Vowels', 
+    description: 'Vowels are 3 pts, consonants are 1 pt.', 
+    scorerFunction: function(word){ return vowelBonusScore(word)} }),
+  
+  Object({ 
+    name: 'Scrabble', 
+    description: 'The traditional scoring algorithm', 
+    scorerFunction: function(word){ return scrabbleScore(word)} })
+];
 
 function scorerPrompt( word ) {
   console.log("Which scoring algorithm would you like to use?")
   console.log()
-  console.log(`0 - ${simpleScoreObject.name}: ${simpleScoreObject.description}`)
-  console.log(`1 - ${vowelBonusScoreObject.name}: ${vowelBonusScoreObject.description}`)
-  console.log(`2 - ${newScrabbleScorerObject.name}: ${newScrabbleScorerObject.description}`)
+  console.log(`0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}`)
+  console.log(`1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}`)
+  console.log(`2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}`)
   let algoSelection = input.question("Enter 0, 1, or 2: ")
   console.log(`Score for '${word}': ${scoringAlgorithms[algoSelection].scorerFunction(word)}`)
 }
