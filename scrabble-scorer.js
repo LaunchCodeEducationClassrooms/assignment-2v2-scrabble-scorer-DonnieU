@@ -102,20 +102,21 @@ const scoringAlgorithms = [
 */
 
 const scoringAlgorithms = [ 
-  new Object({ 
+  Object({ 
     name: 'Simple Score', 
     description: 'Each letter is worth 1 point.', 
-    scoringFunction: function(word){ return simpleScore(word) } }),
+    // scoringFunction: function(word){ return simpleScore(word) } }),
+    scoringFunction: simpleScore }),
   
-  new Object({ 
+  Object({ 
     name: 'Bonus Vowels', 
     description: 'Vowels are 3 pts, consonants are 1 pt.', 
-    scoringFunction: function(word){ return vowelBonusScore(word)} }),
+    scoringFunction: vowelBonusScore }),
   
-  new Object({ 
+  Object({ 
     name: 'Scrabble', 
     description: 'The traditional scoring algorithm', 
-    scoringFunction: function(word){ return scrabbleScore(word)} })
+    scoringFunction: scrabbleScore })
 ];
 
 function scorerPrompt( word ) {
